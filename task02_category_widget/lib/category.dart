@@ -11,12 +11,20 @@ import 'package:flutter/material.dart';
 /// The widget is composed on an [Icon] and [Text]. Tapping on the widget shows
 /// a colored [InkWell] animation.
 class Category extends StatelessWidget {
+  final String name;
+  final ColorSwatch color;
+  final IconData iconLocation;
+
   /// Creates a [Category].
   ///
   /// A [Category] saves the name of the Category (e.g. 'Length'), its color for
   /// the UI, and the icon that represents it (e.g. a ruler).
   // TODO: You'll need the name, color, and iconLocation from main.dart
-  const Category();
+  const Category(
+    this.name,
+    this.color,
+    this.iconLocation,
+  );
 
   /// Builds a custom widget that shows [Category] information.
   ///
