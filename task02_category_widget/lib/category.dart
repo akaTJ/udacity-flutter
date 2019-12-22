@@ -6,6 +6,13 @@
 // https://www.dartlang.org/guides/language/effective-dart/style#ordering
 import 'package:flutter/material.dart';
 
+final _categoryHeight = 100.0;
+final _categoryPadding = 8.0;
+final _borderRadius = _categoryHeight / 2;
+final _iconSize = 60.0;
+final _iconPadding = 16.0;
+final _textSize = 24.0;
+
 /// A custom [Category] widget.
 ///
 /// The widget is composed on an [Icon] and [Text]. Tapping on the widget shows
