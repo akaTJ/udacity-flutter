@@ -43,37 +43,40 @@ class Category extends StatelessWidget {
   // See https://docs.flutter.io/flutter/material/Theme-class.html
   Widget build(BuildContext context) {
     // TODO: Build the custom widget here, referring to the Specs.
-    return Container(
-      height: _categoryHeight,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(_borderRadius),
-        splashColor: color,
-        highlightColor: color,
-        onTap: () {
-          print('I was tapped!');
-        },
-        child: Padding(
-          padding: EdgeInsets.all(_categoryPadding),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(_iconPadding),
-                child: Icon(
-                  iconLocation,
-                  size: _iconSize,
-                ),
-              ),
-              Center(
-                child: Text(
-                  name,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: _textSize,
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        height: _categoryHeight,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(_borderRadius),
+          splashColor: color,
+          highlightColor: color,
+          onTap: () {
+            print('I was tapped!');
+          },
+          child: Padding(
+            padding: EdgeInsets.all(_categoryPadding),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.all(_iconPadding),
+                  child: Icon(
+                    iconLocation,
+                    size: _iconSize,
                   ),
                 ),
-              ),
-            ],
+                Center(
+                  child: Text(
+                    name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: _textSize,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
