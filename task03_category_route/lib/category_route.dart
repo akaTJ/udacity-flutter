@@ -14,7 +14,10 @@ final _horizontalPadding = 8.0;
 final _appBarColor = Colors.green[100];
 final _appBarText = Text(
   'Unit Converter',
-  style: TextStyle(fontSize: _fontSize),
+  style: TextStyle(
+    color: Colors.black,
+    fontSize: _fontSize,
+  ),
 );
 
 /// Category Route (screen).
@@ -65,18 +68,25 @@ class CategoryRoute extends StatelessWidget {
     }
 
     // TODO: Create a list view of the Categories
-    final listView = Container();
+    final listView = ListView(
+      padding: EdgeInsets.all(_horizontalPadding),
+      children: categories,
+    );
 
     // TODO: Create an App Bar
     final appBar = AppBar(
       title: _appBarText,
       backgroundColor: _appBarColor,
       centerTitle: true,
+      elevation: _elevation,
     );
 
     return Scaffold(
       appBar: appBar,
-      body: listView,
+      body: Container(
+        color: _appBarColor,
+        child: listView,
+      ),
     );
   }
 }
