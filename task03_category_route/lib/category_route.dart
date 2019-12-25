@@ -12,7 +12,10 @@ final _fontSize = 30.0;
 final _elevation = 0.0;
 final _horizontalPadding = 8.0;
 final _appBarColor = Colors.green[100];
-final _appBarText = Text('Unit Converter');
+final _appBarText = Text(
+  'Unit Converter',
+  style: TextStyle(fontSize: _fontSize),
+);
 
 /// Category Route (screen).
 ///
@@ -51,6 +54,15 @@ class CategoryRoute extends StatelessWidget {
     // TODO: Create a list of the eight Categories, using the names and colors
     // from above. Use a placeholder icon, such as `Icons.cake` for each
     // Category. We'll add custom icons later.
+    final categories = <Category>[];
+
+    for (var i = 0; i < _categoryNames.length; i++) {
+      categories.add(Category(
+        name: _categoryNames[i],
+        iconLocation: Icons.cake,
+        color: _baseColors[i],
+      ));
+    }
 
     // TODO: Create a list view of the Categories
     final listView = Container();
