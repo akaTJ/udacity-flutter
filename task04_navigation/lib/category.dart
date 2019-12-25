@@ -53,7 +53,10 @@ class Category extends StatelessWidget {
       builder: (BuildContext context) {
         return Scaffold(
           appBar: AppBar(title: Text('My Page')),
-          body: ConverterRoute(units: units,),
+          body: ConverterRoute(
+            units: units,
+            color: color,
+          ),
         );
       },
     ));
