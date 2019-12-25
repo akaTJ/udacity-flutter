@@ -52,7 +52,10 @@ class Category extends StatelessWidget {
     Navigator.push(context, MaterialPageRoute<void>(
       builder: (BuildContext context) {
         return Scaffold(
-          appBar: AppBar(title: Text('My Page')),
+          appBar: AppBar(
+            title: Text(name),
+            backgroundColor: color,
+          ),
           body: ConverterRoute(
             units: units,
             color: color,
