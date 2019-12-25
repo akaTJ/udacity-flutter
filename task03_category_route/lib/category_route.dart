@@ -5,8 +5,14 @@
 import 'package:flutter/material.dart';
 
 // TODO: Check if we need to import anything
+import 'category.dart';
 
 // TODO: Define any constants
+final _fontSize = 30.0;
+final _elevation = 0.0;
+final _horizontalPadding = 8.0;
+final _appBarColor = Colors.green[100];
+final _appBarText = Text('Unit Converter');
 
 /// Category Route (screen).
 ///
@@ -50,7 +56,11 @@ class CategoryRoute extends StatelessWidget {
     final listView = Container();
 
     // TODO: Create an App Bar
-    final appBar = AppBar();
+    final appBar = AppBar(
+      title: _appBarText,
+      backgroundColor: _appBarColor,
+      centerTitle: true,
+    );
 
     return Scaffold(
       appBar: appBar,
