@@ -35,6 +35,9 @@ class ConverterRoute extends StatefulWidget {
 class _ConverterRouteState extends State<ConverterRoute> {
   // TODO: Set some variables, such as for keeping track of the user's input
   // value and units
+  double _userInput;
+  Unit _fromUnit;
+  Unit _toUnit;
 
   // TODO: Determine whether you need to override anything, such as initState()
 
@@ -61,36 +64,52 @@ class _ConverterRouteState extends State<ConverterRoute> {
     // TODO: Create the 'input' group of widgets. This is a Column that
     // includes the input value, and 'from' unit [Dropdown].
 
+    final inputWidgets = Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          TextField(
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Please input something here'
+            ),
+          )
+
+        ],
+      ),
+    );
+
     // TODO: Create a compare arrows icon.
+
+    final arrowsIcon = Icon(Icons.compare_arrows);
 
     // TODO: Create the 'output' group of widgets. This is a Column that
     // includes the output value, and 'to' unit [Dropdown].
 
+    final outputWidgets = Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'This is your output'
+            ),
+          )
+
+        ],
+      ),
+    );
+
     // TODO: Return the input, arrows, and output widgets, wrapped in a Column.
 
-    // TODO: Delete the below placeholder code.
-    final unitWidgets = widget.units.map((Unit unit) {
-      return Container(
-        color: widget.color,
-        margin: EdgeInsets.all(8.0),
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            Text(
-              unit.name,
-              style: Theme.of(context).textTheme.headline,
-            ),
-            Text(
-              'Conversion: ${unit.conversion}',
-              style: Theme.of(context).textTheme.subhead,
-            ),
-          ],
-        ),
-      );
-    }).toList();
-
-    return ListView(
-      children: unitWidgets,
+    return Column(
+      children: [
+        inputWidgets,
+        arrowsIcon,
+        outputWidgets,
+      ],
     );
   }
 }
