@@ -3,6 +3,9 @@
 // found in the LICENSE file.
 
 // TODO: Import relevant packages
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 /// The REST API retrieves unit conversions for [Categories] that change.
 ///
@@ -15,6 +18,9 @@
 class Api {
 
   // TODO: Add any relevant variables and helper functions
+
+  final httpClient = HttpClient();
+  final url = 'flutter.udacity.com';
 
   // TODO: Create getUnits()
   /// Gets all the units and conversion rates for a given category.
@@ -29,4 +35,18 @@ class Api {
   ///
   /// Returns a double, which is the converted amount. Returns null on error.
 
+  Future<double> convert (
+      String category, String amount, String fromUnit, String toUnit) async {
+    final uri = Uri.https(url, '/$category/convert', {
+      'amount': amount, 'from': fromUnit, 'to': toUnit
+    });
+
+    final httpRequest = await httpClient.getUrl(uri);
+    final httpResponse = await httpRequest.close();
+
+    final responseBody = await httpResponse.transform(utf8.decoder).join();
+    final jsonResponse = json.decode(responseBody);
+
+    return jsonResponse['conversion'].toDouble();
+  }
 }
