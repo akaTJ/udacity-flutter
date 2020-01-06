@@ -13,6 +13,7 @@ import 'category.dart';
 import 'category_tile.dart';
 import 'unit.dart';
 import 'unit_converter.dart';
+import 'api.dart';
 
 /// Loads in unit conversion data, and displays the data.
 ///
@@ -93,6 +94,7 @@ class _CategoryRouteState extends State<CategoryRoute> {
     if (_categories.isEmpty) {
       await _retrieveLocalCategories();
       // TODO: Call _retrieveApiCategory() here
+      await _retrieveApiCategory();
     }
   }
 
@@ -130,7 +132,36 @@ class _CategoryRouteState extends State<CategoryRoute> {
 
   // TODO: Add the Currency Category retrieved from the API, to our _categories
   /// Retrieves a [Category] and its [Unit]s from an API on the web
-  Future<void> _retrieveApiCategory() async {}
+  Future<void> _retrieveApiCategory() async {
+    // Add a placeholder while we fetch the Currency category using the API
+    setState(() {
+      _categories.add(Category(
+        name: apiCategory['name'],
+        units: [],
+        color: _baseColors.last,
+        iconLocation: _icons.last,
+      ));
+    });
+    final api = Api();
+    final jsonUnits = await api.getUnits(apiCategory['route']);
+    // If the API errors out or we have no internet connection, this category
+    // remains in placeholder mode (disabled)
+    if (jsonUnits != null) {
+      final units = <Unit>[];
+      for (var unit in jsonUnits) {
+        units.add(Unit.fromJson(unit));
+      }
+      setState(() {
+        _categories.removeLast();
+        _categories.add(Category(
+          name: apiCategory['name'],
+          units: units,
+          color: _baseColors.last,
+          iconLocation: _icons.last,
+        ));
+      });
+    }
+  }
 
   /// Function to call when a [Category] is tapped.
   void _onCategoryTap(Category category) {
