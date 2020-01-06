@@ -126,6 +126,27 @@ class _CategoryRouteState extends State<CategoryRoute> {
       throw ('Data retrieved from API is not a Map');
     }
     // TODO: Create Categories and their list of Units, from the JSON asset
+
+    var categoryIndex = 0;
+    for(var key in data.keys) {
+      final List<Unit> units = data[key].map<Unit>((dynamic data) => Unit.fromJson(data)).toList();
+
+      var category = Category(
+        name: key,
+        units: units,
+        color: _baseColors[categoryIndex],
+        iconLocation: Icons.cake,
+      );
+
+      setState(() {
+        if (categoryIndex == 0) {
+          _defaultCategory = category;
+        }
+        _categories.add(category);
+      });
+
+      categoryIndex += 1;
+    }
   }
 
   /// Function to call when a [Category] is tapped.
@@ -167,16 +188,16 @@ class _CategoryRouteState extends State<CategoryRoute> {
   // TODO: Delete this function; instead, read in the units from the JSON asset
   // inside _retrieveLocalCategories()
   /// Returns a list of mock [Unit]s.
-  List<Unit> _retrieveUnitList(String categoryName) {
-    // when the app first starts up
-    return List.generate(10, (int i) {
-      i += 1;
-      return Unit(
-        name: '$categoryName Unit $i',
-        conversion: i.toDouble(),
-      );
-    });
-  }
+//  List<Unit> _retrieveUnitList(String categoryName) {
+//    // when the app first starts up
+//    return List.generate(10, (int i) {
+//      i += 1;
+//      return Unit(
+//        name: '$categoryName Unit $i',
+//        conversion: i.toDouble(),
+//      );
+//    });
+//  }
 
   @override
   Widget build(BuildContext context) {
